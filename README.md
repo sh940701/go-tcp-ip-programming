@@ -14,3 +14,10 @@ main 브랜치에서 시작하세요.
 ${author}/level-${n}
 
 답은 solve 브랜치에서 관리합니다.
+
+## 실행
+
+Makefile 의 command 를 사용하면 쉽게 IDE 도움을 받을 수 있습니다.
+
+<a href="https://ibb.co/ZK5nzCG"><img src="https://i.ibb.co/MprYkLZ/Screenshot-2023-10-27-at-07-45-44.png" alt="Screenshot-2023-10-27-at-07-45-44" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>
+image du logo instagram</a><br />
