@@ -20,4 +20,11 @@ ${author}/level-${n}
 Makefile 의 command 를 사용하면 쉽게 IDE 도움을 받을 수 있습니다.
 
 <a href="https://ibb.co/ZK5nzCG"><img src="https://i.ibb.co/MprYkLZ/Screenshot-2023-10-27-at-07-45-44.png" alt="Screenshot-2023-10-27-at-07-45-44" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>
-image du logo instagram</a><br />
+</a><br />
+
+
+## 소켓 프로그래밍 다이어그램
+
+<img src="./static/socketProgramming.png" alt="socket programming diagram" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>
+cc: https://www.geeksforgeeks.org/socket-programming-cc/
+<br />
