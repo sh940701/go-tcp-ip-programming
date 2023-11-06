@@ -102,6 +102,11 @@ func handleConnection(fd int, sockAddr *syscall.SockaddrInet4) {
 		clientIP := fmt.Sprintf("%d.%d.%d.%d", sockAddr.Addr[0], sockAddr.Addr[1], sockAddr.Addr[2], sockAddr.Addr[3])
 
 		fmt.Printf("Received: %s\nFrom %s\n\n---\n", string(buf[:n]), clientIP)
+
+		_, err = syscall.Write(fd, buf[:n])
+		if err != nil {
+			log.Fatalln("Error in syscall.Write:", err)
+		}
 	}
 }
 
