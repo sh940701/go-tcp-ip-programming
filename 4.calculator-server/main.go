@@ -1,10 +1,13 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"os"
 	"os/signal"
+	"strconv"
+	"strings"
 	"syscall"
 )
 
@@ -97,6 +100,11 @@ func handleConnection(fd int, sockAddr *syscall.SockaddrInet4) {
 			}
 		}
 
+		// 기존에는 buf 를 그대로 두고 들어온 데이터의 길이까지만 읽어서 반환을 했었다.
+		// 그러나 이번 구현에서는 계산 식인 경우가 있기 때문에, buffer 를 초기화 해줘야 한다.
+		// 이 때 buf = buf[:0] 의 방식으로 초기화를 해주면, 버퍼의 길이 자체가 0이 되어버려서
+		// block 되지 않고 for 문을 계속 반복한다.
+		// 따라서 같은 크기의 빈 버퍼를 만들어두고, 이를 계속 복사하는 방식으로 초기화를 해 준다.
 		copy(buf, zeroed)
 	}
 }
