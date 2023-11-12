@@ -49,6 +49,12 @@ func main() {
 			log.Fatalln("Error in syscall.Write:", err)
 		}
 
+		if message == "quit" {
+			ch <- syscall.SIGINT
+			wg.Wait()
+			break
+		}
+
 		buf := make([]byte, 1024)
 		n, err := syscall.Read(fd, buf)
 		if err != nil {
