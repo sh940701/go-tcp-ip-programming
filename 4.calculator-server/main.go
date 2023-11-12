@@ -98,3 +98,14 @@ func handleSignal(fd int, ch chan os.Signal) {
 	fmt.Println("socket", fd, "is closed.")
 	os.Exit(0)
 }
+
+func checkContainsOperator(message string) bool {
+	operators := []string{"+", "-", "*", "/"}
+	for _, op := range operators {
+		if strings.Contains(message, op) {
+			return true
+		}
+	}
+
+	return false
+}
