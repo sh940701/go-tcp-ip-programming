@@ -77,10 +77,26 @@ func handleConnection(fd int, sockAddr *syscall.SockaddrInet4) {
 
 		fmt.Printf("Received: %s\nFrom %s - Socket: %d\n---\n\n", string(buf[:n]), clientIP, fd)
 
-		_, err = syscall.Write(fd, buf[:n])
-		if err != nil {
-			log.Fatalln("Error in syscall.Write:", err)
+		if checkContainsOperator(string(buf)) == true {
+			result, err := calculate(string(buf[:n]))
+			if err != nil {
+				log.Fatalln("Error in calculate:", err)
+			}
+
+			data := []byte(result)
+
+			_, err = syscall.Write(fd, data)
+			if err != nil {
+				log.Fatalln("Error in syscall.Write:", err)
+			}
+		} else {
+			_, err = syscall.Write(fd, buf[:n])
+			if err != nil {
+				log.Fatalln("Error in syscall.Write:", err)
+			}
 		}
+
+		copy(buf, zeroed)
 	}
 }
 
