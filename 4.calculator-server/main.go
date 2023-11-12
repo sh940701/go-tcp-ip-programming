@@ -62,6 +62,7 @@ func handleConnection(fd int, sockAddr *syscall.SockaddrInet4) {
 	}()
 
 	buf := make([]byte, 1024)
+	zeroed := make([]byte, 1024)
 
 	for {
 		n, err := syscall.Read(fd, buf)
