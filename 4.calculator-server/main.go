@@ -70,7 +70,7 @@ func handleConnection(fd int, sockAddr *syscall.SockaddrInet4) {
 			log.Fatalln("Error in syscall.Read:", err)
 		}
 
-		if n == 0 {
+		if n == 0 || string(buf[:n]) == "quit" {
 			return
 		}
 
