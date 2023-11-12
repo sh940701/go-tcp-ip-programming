@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sync"
 	"syscall"
 )
 
@@ -29,6 +30,8 @@ func main() {
 	if err != nil {
 		log.Fatalln("Error in syscall.Connect:", err)
 	}
+
+	fmt.Println("Client socket", fd, "is connected")
 
 	for {
 		fmt.Print("Enter message: ")
@@ -63,5 +66,18 @@ func main() {
 
 		fmt.Printf("Server: %s\n", string(buf[:n]))
 	}
+}
 
+func handleSignal(fd int, ch chan os.Signal, wg *sync.WaitGroup) {
+	defer wg.Done()
+
+	sig := <-ch
+	fmt.Println("\nReceived signal:", sig)
+	err := syscall.Close(fd)
+	if err != nil {
+		log.Fatalln("Error in syscall.Close:", err)
+	}
+
+	fmt.Println("socket", fd, "is closed.")
+	os.Exit(0)
 }
