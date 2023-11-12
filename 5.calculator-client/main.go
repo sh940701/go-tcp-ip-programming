@@ -16,6 +16,12 @@ func main() {
 		log.Fatalln("Error in syscall.Socket:", err)
 	}
 
+	var wg sync.WaitGroup
+	wg.Add(1)
+
+	ch := make(chan os.Signal, 1)
+	go handleSignal(fd, ch, &wg)
+
 	serverAddr := &syscall.SockaddrInet4{Port: 8080} // 8080 포트
 	serverAddr.Addr = [4]byte{127, 0, 0, 1}          // localhost
 
