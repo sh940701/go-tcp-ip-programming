@@ -16,13 +16,6 @@ func main() {
 		log.Fatalln("Error in syscall.Socket:", err)
 	}
 
-	defer func(fd int) {
-		err = syscall.Close(fd)
-		if err != nil {
-			log.Fatalln("Error in syscall.Close:", err)
-		}
-	}(fd)
-
 	serverAddr := &syscall.SockaddrInet4{Port: 8080} // 8080 포트
 	serverAddr.Addr = [4]byte{127, 0, 0, 1}          // localhost
 
