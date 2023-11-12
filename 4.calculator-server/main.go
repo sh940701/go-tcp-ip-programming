@@ -99,6 +99,43 @@ func handleSignal(fd int, ch chan os.Signal) {
 	os.Exit(0)
 }
 
+func calculate(message string) (string, error) {
+	messageSplit := strings.Split(message, " ")
+	operator := messageSplit[1]
+
+	var result string
+
+	left, err := strconv.ParseFloat(messageSplit[0], 64)
+	if err != nil {
+		return result, err
+	}
+
+	right, err := strconv.ParseFloat(messageSplit[2], 64)
+	if err != nil {
+		return result, err
+	}
+
+	switch operator {
+	case "+":
+		result = fmt.Sprintf("%f", left+right)
+		return result, nil
+	case "-":
+		result = fmt.Sprintf("%f", left-right)
+		return result, nil
+	case "*":
+		result = fmt.Sprintf("%f", left*right)
+		return result, nil
+	case "/":
+		if right == 0 {
+			return result, errors.New("division by zero is not allowed")
+		}
+		result = fmt.Sprintf("%f", left/right)
+		return result, nil
+	}
+
+	return result, errors.New("unknown Error")
+}
+
 func checkContainsOperator(message string) bool {
 	operators := []string{"+", "-", "*", "/"}
 	for _, op := range operators {
