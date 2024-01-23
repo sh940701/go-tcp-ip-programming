@@ -1,30 +1,30 @@
-# Go 로 배우는 Socket 프로그래밍
+<p align="center">
+  <a href="https://go.dev/" target="blank"><img src="https://go.dev/images/gophers/motorcycle.svg" width="200" alt="Nest Logo" /></a>
+</p>
 
-## 레퍼런스
+## Description
 
-[외워서 끝내는 네트워크 핵심이론 - 기초](https://www.inflearn.com/course/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%95%B5%EC%8B%AC%EC%9D%B4%EB%A1%A0-%EA%B8%B0%EC%B4%88)
-[외워서 끝내는 네트워크 핵심이론 - 응용](https://www.inflearn.com/course/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%95%B5%EC%8B%AC%EC%9D%B4%EB%A1%A0-%EC%9D%91%EC%9A%A9)
+Practice of Golang tcp server with POSIX API
 
-## 답안 제출
+## Architecture
+![Golang-TCP](./static/golang-tcp-POSIX.png)
 
-main 브랜치에서 시작하세요.
+## Running the app
 
-브랜치 명
+### Server
+```bash
+$ cd tcp-server
+$ go run main.go
+```
 
-${author}/level-${n}
+### Client
+```bash
+$ cd tcp-client
+$ go run main.go
+```
 
-답은 solve 브랜치에서 관리합니다.
+## Warning ⚠️
 
-## 실행
+If you intend to shut down the application, it is recommended to turn off the client first before stopping the server.
 
-Makefile 의 command 를 사용하면 쉽게 IDE 도움을 받을 수 있습니다.
-
-<a href="https://ibb.co/ZK5nzCG"><img src="https://i.ibb.co/MprYkLZ/Screenshot-2023-10-27-at-07-45-44.png" alt="Screenshot-2023-10-27-at-07-45-44" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>
-</a><br />
-
-
-## 소켓 프로그래밍 다이어그램
-
-<img src="./static/socketProgramming.png" alt="socket programming diagram" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>
-cc: https://www.geeksforgeeks.org/socket-programming-cc/
-<br />
+This sequence ensures a graceful shutdown, preventing potential issues and minimizing data loss.
